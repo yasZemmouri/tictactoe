@@ -11,9 +11,23 @@ const c6El = caseEl[6];
 const c7El = caseEl[7];
 const c8El = caseEl[8];
 
+//Global Variables
+let casesLeft = 9; //number of empty cases
+
+//Tracking Functions
+const checkFullBoard = function () {
+  casesLeft--;
+  console.log("cases left: " + casesLeft); //test
+  if (casesLeft === 0) {
+    console.log("No more moves");
+  }
+};
+//======================Lets Play====================================
 const player1move = function () {
   this.textContent = "X";
   let caseIndex = parseInt(this.id[1]);
+  console.log("player 1 moved"); //test
+  checkFullBoard();
 };
 
 //==========================Event Listners=============================
@@ -27,3 +41,19 @@ c5El.addEventListener("click", player1move);
 c6El.addEventListener("click", player1move);
 c7El.addEventListener("click", player1move);
 c8El.addEventListener("click", player1move);
+
+// //ways to declare array
+// //ways to declare functions
+
+// //function player win.
+// //function initial state.
+// //function move.
+// //use class as arrays better than using id.
+
+//study this
+
+//shortcut for the for loop
+//different color for circle
+//prevent player from playing before computer make move
+//...Operator
+//pass array to a funciton???
