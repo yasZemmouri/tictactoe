@@ -1,1 +1,101 @@
+ody {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  width: 450px;
+  margin: auto;
+  height: 450px;
+  /* background-color: red; */
+  overflow: hidden;
+  position: relative;
+}
+.case {
+  float: left;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  font-size: 5rem;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  z-index: 2000;
+  background-color: transparent;
+}
+/* #c0 {
+    background-color: green;
+  }
+  #c1 {
+    background-color: yellow;
+  }
+  
+  #c2 {
+    background-color: fuchsia;
+  }
+  
+  #c3 {
+    background-color: palegreen;
+  }
+  
+  #c4 {
+    background-color: purple;
+  }
+  #c5 {
+    background-color: palevioletred;
+  }
+  
+  #c6 {
+    background-color: orange;
+  }
+  
+  #c7 {
+    background-color: grey;
+  }
+  #c8 {
+    background-color: blue;
+  } */
 
+.vlines,
+.hlines {
+  width: 150px;
+  height: 100%;
+  position: absolute;
+  /* background-color: rosybrown; */
+  left: 150px;
+}
+
+.hlines {
+  transform: rotate(90deg);
+}
+.hlines::before,
+.vlines::before,
+.hlines::after,
+.vlines::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
+  background-color: #663399;
+  border-radius: 100px;
+  animation: kiko 1.5s ease-out;
+}
+.hlines::after,
+.vlines::after {
+  right: -5px;
+}
+.hlines::before,
+.vlines::before {
+  left: -5px;
+}
+
+@keyframes kiko {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
