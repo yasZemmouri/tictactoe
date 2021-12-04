@@ -13,21 +13,25 @@ const c8El = caseEl[8];
 
 //Global Variables
 let casesLeft = 9; //number of empty cases
+let turn = 1; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
 
 //Tracking Functions
 const checkFullBoard = function () {
   casesLeft--;
   console.log("cases left: " + casesLeft); //test
   if (casesLeft === 0) {
+    turn = 0; //game stopped
     console.log("No more moves");
   }
 };
 //======================Lets Play====================================
 const player1move = function () {
-  this.textContent = "X";
-  let caseIndex = parseInt(this.id[1]);
-  console.log("player 1 moved"); //test
-  checkFullBoard();
+  if (turn === 1 && this.textContent === "") {
+    this.textContent = "X";
+    let caseIndex = parseInt(this.id[1]);
+    console.log("player 1 moved"); //test
+    checkFullBoard();
+  }
 };
 
 //==========================Event Listners=============================
