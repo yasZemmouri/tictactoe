@@ -130,6 +130,7 @@ const player2move = function () {
 
     setTimeout(function () {
       caseEl[caseIndex].textContent = "O";
+      caseEl[caseIndex].classList.add("stroke-txt");
       // turn = 0;//didn't work why??/
     }, 300); //doesn't stop player 1 from playing
 

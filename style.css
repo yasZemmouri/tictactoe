@@ -101,3 +101,10 @@ body {
     height: 100%;
   }
 }
+.stroke-txt {
+  color: inherit;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  font-weight: bold;
+}
