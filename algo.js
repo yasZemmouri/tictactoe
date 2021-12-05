@@ -13,11 +13,17 @@ const c8El = caseEl[8];
 
 //Global Variables
 let casesLeft = 9; //number of empty cases
-let turn = 2; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
+let turn = 0; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
 //Board Situation
 const boardSituation = new Array(9).fill(0);
 //List of empty cases
 const casesLeftIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+//Randomely select which player move first
+const playerToStart = function () {
+  turn = Math.floor(Math.random() * 2 + 1);
+  console.log(`Player ${turn} goes first`);
+};
 
 //Tracking Functions
 //checkWin;
@@ -106,6 +112,7 @@ const updatecasesLeftIndexes = function (caseIndex) {
 };
 
 //======================Lets Play====================================
+
 const player1move = function () {
   if (turn === 1 && this.textContent === "") {
     this.textContent = "X";
@@ -139,7 +146,7 @@ const player2move = function () {
     // // gameOver();
   }
 };
-
+playerToStart();
 player2move();
 
 //==========================Event Listners=============================
