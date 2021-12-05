@@ -13,7 +13,7 @@ const c8El = caseEl[8];
 
 //Global Variables
 let casesLeft = 9; //number of empty cases
-let turn = 1; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
+let turn = 2; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
 //Board Situation
 const boardSituation = new Array(9).fill(0);
 //List of empty cases
