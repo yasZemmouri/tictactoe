@@ -20,12 +20,58 @@ const boardSituation = new Array(9).fill(0);
 const casesLeftIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 //Tracking Functions
+//checkWin;
+//precondition:
+//turn = 1 or turn = 2
+const checkWin = function () {
+  let winner = 3 - turn; //since turns are inversed before making the call. we inverse them back
+  if (
+    (boardSituation[0] === winner &&
+      boardSituation[1] === winner &&
+      boardSituation[2] === winner) ||
+    (boardSituation[0] === winner &&
+      boardSituation[3] === winner &&
+      boardSituation[6] === winner) ||
+    (boardSituation[0] === winner &&
+      boardSituation[4] === winner &&
+      boardSituation[8] === winner) ||
+    (boardSituation[1] === winner &&
+      boardSituation[4] === winner &&
+      boardSituation[7] === winner) ||
+    (boardSituation[2] === winner &&
+      boardSituation[5] === winner &&
+      boardSituation[8] === winner) ||
+    (boardSituation[2] === winner &&
+      boardSituation[4] === winner &&
+      boardSituation[6] === winner) ||
+    (boardSituation[3] === winner &&
+      boardSituation[4] === winner &&
+      boardSituation[5] === winner) ||
+    (boardSituation[6] === winner &&
+      boardSituation[7] === winner &&
+      boardSituation[8] === winner)
+  ) {
+    turn = 0;
+    console.log("checkWinner stopped the game");
+    if (winner === 2) {
+      console.log("You Lose");
+      return true;
+    } else if (winner === 1) {
+      console.log("You Win");
+      return true;
+    }
+  } else {
+    console.log("No Winner");
+    return false;
+  }
+};
 const checkFullBoard = function () {
   casesLeft--;
   console.log("cases left: " + casesLeft); //test
   if (casesLeft === 0) {
     turn = 0; //game stopped
     console.log("No more moves");
+    return true;
   }
 };
 //should be the same for playe 1 and 2
@@ -68,6 +114,7 @@ const player1move = function () {
     updateBoard(caseIndex); //before changing the turn
     updatecasesLeftIndexes(caseIndex);
     turn = 2;
+    checkWin();
     checkFullBoard(); //change turn to 0 if board full. should be after turn change
     player2move();
   }
@@ -86,10 +133,8 @@ const player2move = function () {
       // turn = 0;//didn't work why??/
     }, 300); //doesn't stop player 1 from playing
 
-    console.log(turn);
     turn = 1; //why not use turn 0 to stop player1 from playing somehow
-    checkFullBoard();
-    // // checkWin();
+    checkWin() || checkFullBoard();
     // // gameOver();
   }
 };
