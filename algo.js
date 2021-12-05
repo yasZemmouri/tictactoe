@@ -30,7 +30,6 @@ const checkFullBoard = function () {
 };
 //should be the same for playe 1 and 2
 const updateBoard = function (caseIndex) {
-  console.log("caseIndex: " + caseIndex);
   boardSituation[caseIndex] = turn;
   //tester
   let myvar = "";
@@ -39,15 +38,13 @@ const updateBoard = function (caseIndex) {
   }
   console.log("boardSituation: " + myvar);
 };
+//should be used on player 1 too??
 const updatecasesLeftIndexes = function (caseIndex) {
   //Precondition: takes caseIndex as number between 0 and 8
   //looks for caseIndex amongs emtyCaseTracker elements
   //if it finds return it's index.
 
   let m = casesLeftIndexes.indexOf(caseIndex);
-  console.log("caseIndex: " + caseIndex);
-  // console.log(casesLeft);
-  console.log("m: " + m);
   //swap
   [casesLeftIndexes[m], casesLeftIndexes[casesLeft - 1]] = [
     casesLeftIndexes[casesLeft - 1],
@@ -61,6 +58,7 @@ const updatecasesLeftIndexes = function (caseIndex) {
   }
   console.log("casesLeftIndexes: " + myvar);
 };
+
 //======================Lets Play====================================
 const player1move = function () {
   if (turn === 1 && this.textContent === "") {
@@ -68,8 +66,10 @@ const player1move = function () {
     let caseIndex = parseInt(this.id[1]);
     console.log("player 1 moved"); //test
     updateBoard(caseIndex); //before changing the turn
+    updatecasesLeftIndexes(caseIndex);
     turn = 2;
-    checkFullBoard(); //change turn to 0 if board full.
+    checkFullBoard(); //change turn to 0 if board full. should be after turn change
+    player2move();
   }
 };
 
@@ -79,22 +79,18 @@ const player2move = function () {
     let caseRandom = Math.floor(Math.random() * casesLeft);
     let caseIndex = casesLeftIndexes[caseRandom];
     updateBoard(caseIndex); //before changing turn
-    // boardSituation[caseIndex] = turn;
-    // let myvar = "";
-    // for (let i = 0; i < 9; i++) {
-    //   myvar = myvar + " " + boardSituation[i];
-    // }
-    // console.log("boarderSituation: " + myvar);
-    caseEl[caseIndex].textContent = "O";
-
-    //   // console.log(turn);
-    // }, 300);
-    turn = 1; //why not use turn 0 to stop player1 from playing somehow
     updatecasesLeftIndexes(caseIndex);
+
+    setTimeout(function () {
+      caseEl[caseIndex].textContent = "O";
+      // turn = 0;//didn't work why??/
+    }, 300); //doesn't stop player 1 from playing
+
+    console.log(turn);
+    turn = 1; //why not use turn 0 to stop player1 from playing somehow
     checkFullBoard();
     // // checkWin();
     // // gameOver();
-    // console.log(`cases left: ${casesLeft}`);
   }
 };
 
