@@ -1,3 +1,6 @@
+* {
+  margin: 0;
+}
 body {
   display: flex;
   align-items: center;
@@ -8,7 +11,7 @@ body {
   margin: auto;
   height: 450px;
   /* background-color: red; */
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 .case {
@@ -20,7 +23,7 @@ body {
   text-align: center;
   user-select: none;
   position: relative;
-  z-index: 2000;
+  z-index: 1000;
   background-color: transparent;
 }
 /* #c0 {
@@ -77,7 +80,7 @@ body {
   width: 10px;
   height: 0;
   position: absolute;
-  z-index: 1000;
+  z-index: 500;
   background-color: #663399;
   border-radius: 100px;
   animation: kiko 2s ease-out;
@@ -107,4 +110,21 @@ body {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
   font-weight: bold;
+}
+#gameOver {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  z-index: 2000;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 4em;
 }
