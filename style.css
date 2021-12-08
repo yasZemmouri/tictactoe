@@ -83,8 +83,8 @@ body {
   z-index: 500;
   background-color: #663399;
   border-radius: 100px;
-  animation: kiko 2s ease-out;
-  animation-delay: 1s;
+  animation: kiko 1.5s ease-out;
+  animation-delay: 1.5s;
   animation-fill-mode: forwards;
 }
 .hlines::after,
@@ -113,18 +113,42 @@ body {
 }
 #gameOver {
   position: absolute;
-  width: 500px;
-  height: 300px;
+  /* width: 500px;
+  height: 300px; */
   z-index: 2000;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  /* font-size: 4em; */
+  font-weight: bold;
+  /* transition-property: font-size; */
+  /* transition-delay: 5s; */
+  transition: all 0.4s ease-out;
+
+  /* display: none; */
+}
+.old {
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+.transform {
+  width: 500px;
+  height: 300px;
   font-size: 4em;
 }
+/* .transform {
+  animation-name: gameover;
+  animation-duration: 0.5s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+} */
+/* use transiton instead of transform */
+/* do the message by changing the p content then by creating elements */

@@ -60,11 +60,12 @@ const checkWin = function () {
     turn = 0;
     console.log("checkWinner stopped the game");
     if (winner === 2) {
+      //maybe I should have one gameOver and call it once.
       console.log("You Lose");
-      return true;
+      gameOver(winner);
     } else if (winner === 1) {
       console.log("You Win");
-      return true;
+      gameOver(winner);
     }
   } else {
     console.log("No Winner");
@@ -110,8 +111,22 @@ const updatecasesLeftIndexes = function (caseIndex) {
   }
   console.log("casesLeftIndexes: " + myvar);
 };
+const gameOver = function (winner) {
+  if (winner === 1) {
+    document.getElementsByTagName("p")[0].textContent = "X";
+    document.getElementsByTagName("p")[1].textContent = "You win";
+  } else {
+    document.getElementsByTagName("p")[0].textContent = "O";
+    document.getElementsByTagName("p")[1].textContent = "You lose";
+    document.getElementById("gameOver").classList.add("stroke-txt");
+  }
+  // document.getElementById("gameOver").style.display = "flex";
+  document.getElementById("gameOver").classList.add("transform");
+};
 
 //======================Lets Play====================================
+
+console.log(document.getElementById("gameOver"));
 
 const player1move = function () {
   if (turn === 1 && this.textContent === "") {
@@ -121,28 +136,29 @@ const player1move = function () {
     updateBoard(caseIndex); //before changing the turn
     updatecasesLeftIndexes(caseIndex);
     turn = 2;
-    checkWin();
-    checkFullBoard(); //change turn to 0 if board full. should be after turn change
+    checkWin() || checkFullBoard(); //change turn to 0 if board full. should be after turn change
     player2move();
   }
 };
-
+//why not put the whole player2move inside the setTimeout
 const player2move = function () {
   if (turn === 2) {
-    console.log("player 2 moved");
-    let caseRandom = Math.floor(Math.random() * casesLeft);
-    let caseIndex = casesLeftIndexes[caseRandom];
-    updateBoard(caseIndex); //before changing turn
-    updatecasesLeftIndexes(caseIndex);
+    console.log("player 2 thinking");
 
     setTimeout(function () {
-      caseEl[caseIndex].textContent = "O";
+      let caseRandom = Math.floor(Math.random() * casesLeft);
+      let caseIndex = casesLeftIndexes[caseRandom];
+      console.log("player 2 moved");
+      updateBoard(caseIndex); //before changing turn
+      updatecasesLeftIndexes(caseIndex);
       caseEl[caseIndex].classList.add("stroke-txt");
+      caseEl[caseIndex].textContent = "O";
       // turn = 0;//didn't work why??/
-    }, 300); //doesn't stop player 1 from playing
+      turn = 1;
+      checkWin() || checkFullBoard(); //must be executed after turn = 1; or we can use a condition. or maybe turn = check@in()||checkFullBoard()
+    }, 600); //doesn't stop player 1 from playing
 
-    turn = 1; //why not use turn 0 to stop player1 from playing somehow
-    checkWin() || checkFullBoard();
+    //why not use turn 0 to stop player1 from playing somehow
     // // gameOver();
   }
 };
@@ -151,6 +167,7 @@ player2move();
 
 //==========================Event Listners=============================
 //Click on cases Listners
+
 c0El.addEventListener("click", player1move);
 c1El.addEventListener("click", player1move);
 c2El.addEventListener("click", player1move);
