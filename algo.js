@@ -11,6 +11,9 @@ const c6El = caseEl[6];
 const c7El = caseEl[7];
 const c8El = caseEl[8];
 
+const pEl = document.getElementsByTagName("p");
+const gameOverEl = document.getElementById("gameOver");
+
 //Global Variables
 let casesLeft = 9; //number of empty cases
 let turn = 0; // 1 player 1 turn, 2 player 2 turn, 0 game stopped
@@ -57,15 +60,18 @@ const checkWin = function () {
       boardSituation[7] === winner &&
       boardSituation[8] === winner)
   ) {
-    turn = 0;
     console.log("checkWinner stopped the game");
     if (winner === 2) {
       //maybe I should have one gameOver and call it once.
       console.log("You Lose");
+      console.log("checkWinner called gameOver");
       gameOver(winner);
+      return true;
     } else if (winner === 1) {
       console.log("You Win");
+      console.log("checkWinner called gameOver");
       gameOver(winner);
+      return true;
     }
   } else {
     console.log("No Winner");
@@ -73,12 +79,14 @@ const checkWin = function () {
   }
 };
 const checkFullBoard = function () {
+  console.log("checkFullBoard was called");
   casesLeft--;
   console.log("cases left: " + casesLeft); //test
   if (casesLeft === 0) {
-    turn = 0; //game stopped
+    console.log("checkFullBoard stopped the game");
     console.log("No more moves");
-    return true;
+    console.log("checkFullBoard called gameOver");
+    gameOver(casesLeft);
   }
 };
 //should be the same for playe 1 and 2
@@ -111,22 +119,35 @@ const updatecasesLeftIndexes = function (caseIndex) {
   }
   console.log("casesLeftIndexes: " + myvar);
 };
-const gameOver = function (winner) {
+const gameOver = function (winner = null) {
   if (winner === 1) {
-    document.getElementsByTagName("p")[0].textContent = "X";
-    document.getElementsByTagName("p")[1].textContent = "You win";
-  } else {
-    document.getElementsByTagName("p")[0].textContent = "O";
-    document.getElementsByTagName("p")[1].textContent = "You lose";
-    document.getElementById("gameOver").classList.add("stroke-txt");
+    pEl[0].textContent = "X";
+    pEl[1].textContent = "You win";
+  } else if (winner === 2) {
+    pEl[0].textContent = "O";
+    pEl[1].textContent = "You lose";
+    gameOverEl.classList.add("stroke-txt");
+  } else if (winner === 0) {
+    // how to change style for multiple elements at once???
+    //1st paragraph
+    pEl[0].textContent = "X";
+    let half0 = document.createElement("SPAN");
+    half0.textContent = "O";
+    half0.classList.add("stroke-txt");
+    pEl[0].prepend(half0);
+    //second paragraph
+    pEl[1].textContent = "Dr"; //give o and x different colors
+    let half1 = document.createElement("SPAN");
+    half1.textContent = "aw";
+    half1.classList.add("stroke-txt");
+    pEl[1].appendChild(half1);
   }
+  turn = 0; //game stopped
   // document.getElementById("gameOver").style.display = "flex";
-  document.getElementById("gameOver").classList.add("transform");
+  gameOverEl.classList.add("transform");
 };
 
 //======================Lets Play====================================
-
-console.log(document.getElementById("gameOver"));
 
 const player1move = function () {
   if (turn === 1 && this.textContent === "") {

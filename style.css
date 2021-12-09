@@ -121,7 +121,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.3);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,6 +143,7 @@ body {
   width: 500px;
   height: 300px;
   font-size: 4em;
+  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.3);
 }
 /* .transform {
   animation-name: gameover;
