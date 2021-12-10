@@ -14,6 +14,7 @@ body {
   /* overflow: hidden; */
   position: relative;
 }
+
 .case {
   float: left;
   width: 150px;
@@ -26,38 +27,6 @@ body {
   z-index: 1000;
   background-color: transparent;
 }
-/* #c0 {
-    background-color: green;
-  }
-  #c1 {
-    background-color: yellow;
-  }
-  
-  #c2 {
-    background-color: fuchsia;
-  }
-  
-  #c3 {
-    background-color: palegreen;
-  }
-  
-  #c4 {
-    background-color: purple;
-  }
-  #c5 {
-    background-color: palevioletred;
-  }
-  
-  #c6 {
-    background-color: orange;
-  }
-  
-  #c7 {
-    background-color: grey;
-  }
-  #c8 {
-    background-color: blue;
-  } */
 
 .vlines,
 .hlines {
@@ -87,6 +56,7 @@ body {
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
 }
+
 .hlines::after,
 .vlines::after {
   right: -5px;
@@ -144,6 +114,44 @@ body {
   height: 300px;
   font-size: 4em;
   box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 640px) {
+  .transform {
+    width: 250px;
+    height: 150px;
+    font-size: 3em;
+  }
+  .hlines::after,
+  .vlines::after {
+    right: -3px;
+  }
+  .hlines::before,
+  .vlines::before {
+    left: -3px;
+  }
+  .hlines::before,
+  .vlines::before,
+  .hlines::after,
+  .vlines::after {
+    width: 6px;
+  }
+  .vlines,
+  .hlines {
+    width: 75px;
+    left: 75px;
+  }
+  .container {
+    width: 225px;
+    height: 225px;
+    /* background-color: aqua; */
+  }
+  .case {
+    width: 75px;
+    height: 75px;
+    /* background-color: blue; */
+    line-height: 75px;
+    font-size: 3rem;
+  }
 }
 /* .transform {
   animation-name: gameover;
